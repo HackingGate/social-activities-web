@@ -1,22 +1,20 @@
 import styles from '../../styles/Layout.module.css'
-import { NextPage } from 'next';
-import { ReactElement } from 'react';
-import Footer from './footer';
-import Header from './header';
+import { NextPage } from 'next'
+import { ReactElement } from 'react'
+import Footer from './footer'
+import Header from './header'
 
 interface LayoutProps {
-  children: ReactElement,
+  children: ReactElement
 }
 
 const Layout: NextPage<LayoutProps> = (props) => (
   <div className={styles.container}>
-    <Header/>
+    <Header />
 
-    <main className={styles.main}>
-      {props.children}
-    </main>
+    <main className={styles.main}>{props.children}</main>
 
-    <Footer/>
+    <Footer />
   </div>
 )
 

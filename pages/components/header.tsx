@@ -1,5 +1,5 @@
-import { NextPage } from 'next';
-import styles from '../../styles/Header.module.css';
+import { NextPage } from 'next'
+import styles from '../../styles/Header.module.css'
 
 const Header: NextPage = () => (
   <header className={styles.header}>

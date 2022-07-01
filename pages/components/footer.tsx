@@ -1,6 +1,6 @@
-import { NextPage } from 'next';
-import styles from '../../styles/Footer.module.css';
-import Image from 'next/image';
+import { NextPage } from 'next'
+import styles from '../../styles/Footer.module.css'
+import Image from 'next/image'
 
 const Footer: NextPage = () => (
   <footer className={styles.footer}>
