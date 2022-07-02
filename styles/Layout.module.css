@@ -1,4 +1,8 @@
-.container {
+.outerContainer {
+  background: white;
+}
+
+.innerContainer {
   padding: 0 2rem;
 }
 
