@@ -9,12 +9,14 @@ interface LayoutProps {
 }
 
 const Layout: NextPage<LayoutProps> = (props) => (
-  <div className={styles.container}>
+  <div className={styles.outerContainer}>
     <Header />
 
-    <main className={styles.main}>{props.children}</main>
+    <div className={styles.innerContainer}>
+      <main className={styles.main}>{props.children}</main>
 
-    <Footer />
+      <Footer />
+    </div>
   </div>
 )
 
