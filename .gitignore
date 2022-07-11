@@ -36,3 +36,5 @@ yarn-error.log*
 
 # Custom
 .idea/
+.env
+generated/
