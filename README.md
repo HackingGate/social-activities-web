@@ -6,7 +6,6 @@
 
 ### 1. Download project and install dependencies
 
-
 Download this project:
 
 ```
