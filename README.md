@@ -6,23 +6,22 @@
 
 ### 1. Download project and install dependencies
 
-
 Download this project:
 
-```
+```bash
 git clone https://github.com/HackingGate/social-activities-web.git
 ```
 
 Install npm dependencies:
 
-```
+```bash
 cd social-activities-web
 yarn install
 ```
 
 Generate prisma and nexus:
 
-```
+```bash
 yarn generate
 ```
 
@@ -30,13 +29,13 @@ yarn generate
 
 Create mongodb and edit `.env` file
 
-```
+```env
 DATABASE_URL=""
 ```
 
 ### 3. Start the app
 
-```
+```bash
 yarn run dev
 ```
 
