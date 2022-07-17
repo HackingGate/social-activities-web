@@ -36,7 +36,7 @@ DATABASE_URL=""
 Seed
 
 ```bash
-npx prisma seed 
+npx prisma seed
 ```
 
 ### 3. Start the app

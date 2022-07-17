@@ -8,13 +8,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier-check": "prettier -check .",
-    "prettier-write": "prettier --write .",
+    "prettier:check": "prettier --check '**/*.{js,jsx,ts,tsx}'",
+    "prettier:write": "prettier --write '**/*.{js,jsx,ts,tsx}'",
+    "prisma:format": "prisma format",
+    "format": "yarn prettier:write && yarn prisma:format",
     "prepare": "husky install",
-    "generate": "yarn generate:prisma && yarn generate:nexus",
     "generate:prisma": "prisma generate",
     "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\"",
-    "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json pages/api"
+    "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json pages/api",
+    "generate": "yarn generate:prisma && yarn generate:nexus"
   },
   "dependencies": {
     "@apollo/client": "3.6.9",
