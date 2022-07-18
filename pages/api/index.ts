@@ -35,7 +35,7 @@ export const config = {
   },
 }
 
-const handler: NextApiHandler = async (req, res) => {
+const graphqlHandler: NextApiHandler = async (req, res) => {
   const apolloServerHandler = await getApolloServerHandler()
 
   if (req.method === 'OPTIONS') {
@@ -46,4 +46,4 @@ const handler: NextApiHandler = async (req, res) => {
   return apolloServerHandler(req, res)
 }
 
-export default cors()(handler)
+export default cors()(graphqlHandler)
