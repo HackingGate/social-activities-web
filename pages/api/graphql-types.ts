@@ -1,18 +1,10 @@
 import { DateTimeResolver } from 'graphql-scalars'
-import {
-  asNexusMethod,
-  makeSchema,
-  nonNull,
-  nullable,
-  objectType,
-  stringArg,
-} from 'nexus'
-import path from 'path'
+import { asNexusMethod, nonNull, nullable, objectType, stringArg } from 'nexus'
 import prisma from '../../lib/prisma'
 
 export const GQLDate = asNexusMethod(DateTimeResolver, 'date')
 
-const User = objectType({
+export const User = objectType({
   name: 'User',
   definition(t) {
     t.string('id')
@@ -30,7 +22,7 @@ const User = objectType({
   },
 })
 
-const Post = objectType({
+export const Post = objectType({
   name: 'Post',
   definition(t) {
     t.string('id')
@@ -49,7 +41,7 @@ const Post = objectType({
   },
 })
 
-const Query = objectType({
+export const Query = objectType({
   name: 'Query',
   definition(t) {
     t.field('post', {
@@ -101,7 +93,7 @@ const Query = objectType({
   },
 })
 
-const Mutation = objectType({
+export const Mutation = objectType({
   name: 'Mutation',
   definition(t) {
     t.field('signupUser', {
@@ -165,13 +157,5 @@ const Mutation = objectType({
         })
       },
     })
-  },
-})
-
-export const schema = makeSchema({
-  types: [Query, Mutation, Post, User, GQLDate],
-  outputs: {
-    typegen: path.join(process.cwd(), 'generated/nexus-typegen.ts'),
-    schema: path.join(process.cwd(), 'generated/schema.graphql'),
   },
 })

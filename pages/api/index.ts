@@ -1,7 +1,17 @@
 import { ApolloServer } from 'apollo-server-micro'
-import { schema } from './graphql'
+import { Query, Mutation, Post, User, GQLDate } from './graphql-types'
 import { NextApiHandler } from 'next'
 import cors from 'micro-cors'
+import { makeSchema } from 'nexus'
+import path from 'path'
+
+const schema = makeSchema({
+  types: [Query, Mutation, Post, User, GQLDate],
+  outputs: {
+    typegen: path.join(process.cwd(), 'generated/nexus-typegen.ts'),
+    schema: path.join(process.cwd(), 'generated/schema.graphql'),
+  },
+})
 
 let apolloServerHandler: NextApiHandler
 
@@ -17,6 +27,12 @@ async function getApolloServerHandler() {
   }
 
   return apolloServerHandler
+}
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
 }
 
 const handler: NextApiHandler = async (req, res) => {
