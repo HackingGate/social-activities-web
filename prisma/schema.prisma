@@ -7,21 +7,79 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model User {
-  id    String  @id @default(auto()) @map("_id") @db.ObjectId
-  email String  @unique
-  name  String?
-  posts Post[]
+//model User {
+//  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+//  email String  @unique
+//  name  String?
+//  posts Post[]
+//}
+//
+//model Post {
+//  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+//  published Boolean @default(false)
+//  title    String
+//  body     String
+//  comments Comment[]
+//  author   User      @relation(fields: [authorId], references: [id])
+//  authorId String    @db.ObjectId
+//}
+//
+//// Comments contain a comment string and connect back to the post.
+//// postId must have @db.ObjectId to match up with Post's id type
+//model Comment {
+//  id      String @id @default(auto()) @map("_id") @db.ObjectId
+//  post    Post   @relation(fields: [postId], references: [id])
+//  postId  String @db.ObjectId
+//  comment String
+//}
+
+// Posts contain a title and body and connect back to the user.
+// userId must have @db.ObjectId to match up with User's id type
+model Post {
+  id      String    @id @default(auto()) @map("_id") @db.ObjectId
+  user    User      @relation(fields: [userId], references: [id])
+  userId  String    @db.ObjectId
+  title   String
+  body    String
+  Comment Comment[]
 }
 
-model Post {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  published Boolean   @default(false)
-  title     String
-  body      String
-  comments  Comment[]
-  author    User      @relation(fields: [authorId], references: [id])
-  authorId  String    @db.ObjectId
+// Users contain an email and password and connect back to the followers and following.
+// followers and following must have @db.ObjectId to match up with User's id type
+model User {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  email         String          @unique
+  name          String?
+  posts         Post[]
+  PasswordReset PasswordReset[]
+  Event         Event[]
+}
+
+// Friends collection connects users to each other.
+// userId must have @db.ObjectId to match up with User's id type
+// friendId must have @db.ObjectId to match up with User's id type
+model Friend {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  userId   String @db.ObjectId
+  friendId String @db.ObjectId
+}
+
+// Friend requests collection connects users to each other.
+// userId must have @db.ObjectId to match up with User's id type
+// friendId must have @db.ObjectId to match up with User's id type
+model FriendRequest {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  userId   String @db.ObjectId
+  friendId String @db.ObjectId
+}
+
+// PasswordReset contains the user's email and a token to reset their password.
+// userId must have @db.ObjectId to match up with User's id type
+model PasswordReset {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId
+  token  String
 }
 
 // Comments contain a comment string and connect back to the post.
@@ -31,4 +89,14 @@ model Comment {
   post    Post   @relation(fields: [postId], references: [id])
   postId  String @db.ObjectId
   comment String
+}
+
+// Events contain a title and description and connect back to the user.
+// userId must have @db.ObjectId to match up with User's id type
+model Event {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  user        User   @relation(fields: [userId], references: [id])
+  userId      String @db.ObjectId
+  title       String
+  description String
 }
