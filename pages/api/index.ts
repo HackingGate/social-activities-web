@@ -13,6 +13,12 @@ const schema = makeSchema({
   },
 })
 
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}
+
 let apolloServerHandler: NextApiHandler
 
 async function getApolloServerHandler() {
@@ -27,12 +33,6 @@ async function getApolloServerHandler() {
   }
 
   return apolloServerHandler
-}
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
 }
 
 const graphqlHandler: NextApiHandler = async (req, res) => {
