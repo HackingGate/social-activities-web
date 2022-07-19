@@ -33,6 +33,12 @@ Create mongodb and edit `.env` file
 DATABASE_URL=""
 ```
 
+Seed
+
+```bash
+npx prisma db seed
+```
+
 ### 3. Start the app
 
 ```bash
