@@ -50,14 +50,18 @@ const userData: Prisma.UserCreateInput[] = [
 
 export async function main() {
   try {
-    console.log(`Start seeding ...`)
+    console.log('Deleting database...')
+    // Delete all posts and users
+    await prisma.post.deleteMany({})
+    await prisma.user.deleteMany({})
+    console.log('Creating users...')
     for (const u of userData) {
       const user = await prisma.user.create({
         data: u,
       })
       console.log(`Created user with id: ${user.id}`)
     }
-    console.log(`Seeding finished.`)
+    console.log('Finished!')
   } catch (err) {
     console.error(err)
     process.exit(1)
