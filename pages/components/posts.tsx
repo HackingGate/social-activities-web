@@ -9,9 +9,18 @@ const FeedQuery = gql`
       title
       body
       published
-      author {
+      user {
         id
         name
+        email
+        passwordResets {
+          id
+          token
+        }
+        posts {
+          id
+          title
+        }
       }
     }
   }
@@ -21,7 +30,7 @@ const Post = ({ post }) => (
   <Link href="/p/[id]" as={`/p/${post.id}`}>
     <a>
       <h2>{post.title}</h2>
-      <small>By {post.author.name}</small>
+      <small>By {post.user.name}</small>
       <p>{post.body}</p>
     </a>
   </Link>
