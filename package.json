@@ -20,8 +20,12 @@
   },
   "dependencies": {
     "@apollo/client": "3.6.9",
+    "@chakra-ui/react": "^2.2.4",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
     "@prisma/client": "4.1.0",
     "apollo-server-micro": "3.10.0",
+    "framer-motion": "^6.5.1",
     "graphql-scalars": "^1.17.0",
     "micro": "9.4.0",
     "micro-cors": "^0.1.1",
