@@ -21,7 +21,11 @@ import { PasswordField } from './PasswordField'
 import { NextPage } from 'next'
 
 const Login: NextPage = () => (
-  <Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }}>
+  <Container
+    maxW="lg"
+    py={{ base: '12', md: '24' }}
+    px={{ base: '0', sm: '8' }}
+  >
     <Stack spacing="8">
       <Stack spacing="6">
         <Logo />
