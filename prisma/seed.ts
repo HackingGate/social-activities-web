@@ -15,6 +15,14 @@ const userData: Prisma.UserCreateInput[] = [
         },
       ],
     },
+    passwordResets: {
+      create: [
+        {
+          token: 'alice-token',
+          expires: new Date(Date.now() + 3600 * 1000),
+        },
+      ],
+    },
   },
   {
     name: 'Nilu',
@@ -51,8 +59,8 @@ const userData: Prisma.UserCreateInput[] = [
 export async function main() {
   try {
     console.log('Deleting database...')
-    // Delete all posts and users
     await prisma.post.deleteMany({})
+    await prisma.passwordReset.deleteMany({})
     await prisma.user.deleteMany({})
     console.log('Creating users...')
     for (const u of userData) {
