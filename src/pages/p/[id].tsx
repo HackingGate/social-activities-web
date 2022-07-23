@@ -1,4 +1,4 @@
-import Layout from '../components/layout'
+import Layout from '../../components/layout'
 import Router, { useRouter } from 'next/router'
 import gql from 'graphql-tag'
 import { useQuery, useMutation } from '@apollo/client'

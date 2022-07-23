@@ -1,4 +1,4 @@
-import styles from '../../styles/Layout.module.css'
+import styles from '../styles/Layout.module.css'
 import { NextPage } from 'next'
 import { ReactElement } from 'react'
 import Footer from './footer'

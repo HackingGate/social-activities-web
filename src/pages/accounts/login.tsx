@@ -15,9 +15,9 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 import * as React from 'react'
-import { Logo } from './Logo'
-import { OAuthButtonGroup } from './OAuthButtonGroup'
-import { PasswordField } from './PasswordField'
+import { Logo } from '../../components/accounts/Logo'
+import { OAuthButtonGroup } from '../../components/accounts/OAuthButtonGroup'
+import { PasswordField } from '../../components/accounts/PasswordField'
 import { NextPage } from 'next'
 
 const Login: NextPage = () => (
