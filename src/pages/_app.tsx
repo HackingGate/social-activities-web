@@ -1,5 +1,4 @@
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
 

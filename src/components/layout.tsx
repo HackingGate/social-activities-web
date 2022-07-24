@@ -1,7 +1,5 @@
-import styles from '../styles/Layout.module.css'
 import { NextPage } from 'next'
 import { ReactElement } from 'react'
-import Footer from './footer'
 import Header from './header'
 
 interface LayoutProps {
@@ -9,13 +7,11 @@ interface LayoutProps {
 }
 
 const Layout: NextPage<LayoutProps> = (props) => (
-  <div className={styles.outerContainer}>
+  <div>
     <Header />
 
-    <div className={styles.innerContainer}>
-      <main className={styles.main}>{props.children}</main>
-
-      <Footer />
+    <div>
+      <main>{props.children}</main>
     </div>
   </div>
 )
