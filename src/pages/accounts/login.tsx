@@ -34,7 +34,10 @@ const Login: NextPage = () => (
             Log in to your account
           </Heading>
           <HStack spacing="1" justify="center">
-            <Text color="muted">Don't have an account?</Text>
+            <Text color="muted">
+              {/* eslint-disable-next-line react/no-unescaped-entities */}
+              Don't have an account?
+            </Text>
             <Button variant="link" colorScheme="blue">
               Sign up
             </Button>
