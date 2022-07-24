@@ -1,6 +1,6 @@
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import { ChakraProvider } from '@chakra-ui/react'
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -10,7 +10,9 @@ const client = new ApolloClient({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
-      <Component {...pageProps} />
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
     </ApolloProvider>
   )
 }
