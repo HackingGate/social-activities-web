@@ -10,7 +10,7 @@ const PostQuery = gql`
       title
       body
       published
-      author {
+      user {
         id
         name
       }
@@ -25,7 +25,7 @@ const PublishMutation = gql`
       title
       body
       published
-      author {
+      user {
         id
         name
       }
@@ -40,7 +40,7 @@ const DeleteMutation = gql`
       title
       body
       published
-      author {
+      user {
         id
         name
       }

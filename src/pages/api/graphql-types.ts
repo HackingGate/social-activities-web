@@ -4,6 +4,25 @@ import prisma from '../../lib/prisma'
 
 export const GQLDate = asNexusMethod(DateTimeResolver, 'date')
 
+export const Post = objectType({
+  name: 'Post',
+  definition(t) {
+    t.string('id')
+    t.string('title')
+    t.nullable.string('body')
+    t.boolean('published')
+    t.nullable.field('user', {
+      type: 'User',
+      resolve: (parent) =>
+        prisma.post
+          .findUnique({
+            where: { id: parent.id },
+          })
+          .user(),
+    })
+  },
+})
+
 export const User = objectType({
   name: 'User',
   definition(t) {
@@ -19,25 +38,34 @@ export const User = objectType({
           })
           .posts(),
     })
-  },
-})
-
-export const Post = objectType({
-  name: 'Post',
-  definition(t) {
-    t.string('id')
-    t.string('title')
-    t.nullable.string('body')
-    t.boolean('published')
-    t.nullable.field('author', {
-      type: 'User',
+    t.list.field('passwordResets', {
+      type: 'PasswordReset',
       resolve: (parent) =>
-        prisma.post
+        prisma.user
           .findUnique({
             where: { id: parent.id },
           })
-          .author(),
+          .passwordResets(),
     })
+  },
+})
+
+export const PasswordReset = objectType({
+  name: 'PasswordReset',
+  definition(t) {
+    t.string('id')
+    t.nullable.field('user', {
+      type: 'User',
+      resolve: (parent) =>
+        prisma.passwordReset
+          .findUnique({
+            where: { id: parent.id },
+          })
+          .user(),
+    })
+    t.string('userId')
+    t.string('token')
+    t.date('expires')
   },
 })
 
@@ -137,7 +165,7 @@ export const Mutation = objectType({
             title,
             body,
             published: false,
-            author: {
+            user: {
               connect: { email: authorEmail },
             },
           },
