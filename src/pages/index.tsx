@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Layout from '../components/layout'
 import NewestPosts from '../components/posts'
+import Session from '../components/accounts/Session'
 
 const Home: NextPage = () => {
   return (
@@ -13,7 +14,10 @@ const Home: NextPage = () => {
       </Head>
 
       <Layout>
-        <NewestPosts />
+        <div>
+          <Session />
+          <NewestPosts />
+        </div>
       </Layout>
     </div>
   )
