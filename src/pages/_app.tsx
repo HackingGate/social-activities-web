@@ -8,11 +8,11 @@ const client = new ApolloClient({
   uri: '/api',
 })
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <ChakraProvider>
-        <SessionProvider>
+        <SessionProvider session={session} refetchInterval={5 * 60}>
           <Component {...pageProps} />
         </SessionProvider>
       </ChakraProvider>
