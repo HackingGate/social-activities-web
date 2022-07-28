@@ -22,7 +22,7 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token }) {
-      token.userRole = "admin"
+      token.userRole = 'admin'
       return token
     },
   },
