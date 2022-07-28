@@ -25,13 +25,9 @@ Generate prisma and nexus:
 yarn generate
 ```
 
-### 2. Create database
+### 2. Database
 
-Create mongodb and edit `.env` file
-
-```env
-DATABASE_URL=""
-```
+Create mongodb and fill `DATABASE_URL` in .env
 
 Seed
 
@@ -39,7 +35,17 @@ Seed
 npx prisma db seed
 ```
 
-### 3. Start the app
+### 3. Configure Authentication Providers
+
+Fill `NEXTAUTH_SECRET` in .env
+
+```bash
+openssl rand -base64 32
+```
+
+Fill `EMAIL_FROM`, `EMAIL_SERVER` in .env
+
+### 4. Start the app
 
 ```bash
 yarn run dev
