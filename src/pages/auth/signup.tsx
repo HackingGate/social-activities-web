@@ -19,10 +19,35 @@ import { Logo } from '../../components/auth/Logo'
 import { OAuthButtonGroup } from '../../components/auth/OAuthButtonGroup'
 import { PasswordField } from '../../components/auth/PasswordField'
 import { NextPage } from 'next'
-import Router from 'next/router'
 import { signIn } from 'next-auth/react'
+import gql from 'graphql-tag'
+import { useMutation } from '@apollo/client'
 
-const SignIn: NextPage = () => {
+const SignUpMutation = gql`
+  mutation SignUpMutation(
+    $name: String
+    $username: String!
+    $email: String!
+    $password: String!
+  ) {
+    signupUser(
+      name: $name
+      username: $username
+      email: $email
+      password: $password
+    ) {
+      id
+      name
+      username
+      email
+    }
+  }
+`
+
+const SignUp: NextPage = (props: { csrfToken }) => {
+  const [signUp] = useMutation(SignUpMutation)
+  const [name, setName] = useState<string>()
+  const [username, setUsername] = useState<string>()
   const [email, setEmail] = useState<string>()
   const [password, setPassword] = useState<string>()
 
@@ -37,21 +62,18 @@ const SignIn: NextPage = () => {
           <Logo />
           <Stack spacing={{ base: '2', md: '3' }} textAlign="center">
             <Heading size={useBreakpointValue({ base: 'xs', md: 'sm' })}>
-              Log in to your account
+              Sign up your account
             </Heading>
             <HStack spacing="1" justify="center">
-              <Text color="muted">
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                Don't have an account?
-              </Text>
+              <Text color="muted">Already have an account?</Text>
               <Button
                 variant="link"
                 colorScheme="blue"
-                onClick={async () => {
-                  await Router.push('/auth/signup')
+                onClick={() => {
+                  signIn()
                 }}
               >
-                Sign up
+                Sign in
               </Button>
             </HStack>
           </Stack>
@@ -66,37 +88,68 @@ const SignIn: NextPage = () => {
           <Stack spacing="6">
             <Stack spacing="5">
               <FormControl>
-                <FormLabel htmlFor="email">Username or email</FormLabel>
+                <FormLabel htmlFor="text">Name</FormLabel>
+                <Input
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value)
+                  }}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel htmlFor="text">Username</FormLabel>
+                <Input
+                  id="username"
+                  type="text"
+                  value={username}
+                  onChange={(e) => {
+                    setUsername(e.target.value)
+                  }}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel htmlFor="email">Email</FormLabel>
                 <Input
                   id="email"
                   type="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value)
+                  }}
                 />
               </FormControl>
               <PasswordField
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                }}
               />
             </Stack>
             <HStack justify="space-between">
               <Checkbox defaultChecked>Remember me</Checkbox>
-              <Button variant="link" colorScheme="blue" size="sm">
-                Forgot password?
-              </Button>
             </HStack>
             <Stack spacing="6">
               <Button
                 variant="primary"
-                onClick={() => {
+                onClick={async (e) => {
+                  await signUp({
+                    variables: {
+                      name,
+                      username,
+                      email,
+                      password,
+                    },
+                  })
                   signIn('credentials', {
-                    usernameOrEmail: email,
+                    usernameOrEmail: username || email,
                     password: password,
                     callbackUrl: '/',
                   })
                 }}
               >
-                Sign in
+                Sign up
               </Button>
               <HStack>
                 <Divider />
@@ -114,4 +167,4 @@ const SignIn: NextPage = () => {
   )
 }
 
-export default SignIn
+export default SignUp
