@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Layout from '../components/layout'
 import NewestPosts from '../components/posts'
-import Session from '../components/accounts/Session'
+import Session from '../components/auth/Session'
 
 const Home: NextPage = () => {
   return (

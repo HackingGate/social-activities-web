@@ -29,6 +29,8 @@ export const User = objectType({
     t.string('id')
     t.string('email')
     t.string('name')
+    t.nullable.string('username')
+    t.nullable.string('password')
     t.list.field('posts', {
       type: 'Post',
       resolve: (parent) =>
@@ -128,13 +130,17 @@ export const Mutation = objectType({
       type: 'User',
       args: {
         name: stringArg(),
+        username: nullable(stringArg()),
         email: nonNull(stringArg()),
+        password: nullable(stringArg()),
       },
-      resolve: (_, { name, email }, ctx) => {
+      resolve: (_, { name, username, email, password }, ctx) => {
         return prisma.user.create({
           data: {
             name,
+            username,
             email,
+            password,
           },
         })
       },
