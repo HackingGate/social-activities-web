@@ -2,10 +2,6 @@ import { DateTimeResolver } from 'graphql-scalars'
 import { asNexusMethod, nonNull, nullable, objectType, stringArg } from 'nexus'
 import prisma from '../../lib/prisma'
 
-export const config = {
-  runtime: 'edge',
-}
-
 export const GQLDate = asNexusMethod(DateTimeResolver, 'date')
 
 export const Post = objectType({
