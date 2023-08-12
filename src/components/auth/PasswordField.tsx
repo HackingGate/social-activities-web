@@ -49,7 +49,7 @@ export const PasswordField = React.forwardRef<HTMLInputElement, InputProps>(
         </InputGroup>
       </FormControl>
     )
-  }
+  },
 )
 
 PasswordField.displayName = 'PasswordField'
