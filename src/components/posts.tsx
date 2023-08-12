@@ -28,11 +28,9 @@ const FeedQuery = gql`
 
 const Post = ({ post }) => (
   <Link href="/p/[id]" as={`/p/${post.id}`}>
-    <a>
-      <h2>{post.title}</h2>
-      <small>By {post.user.name}</small>
-      <p>{post.body}</p>
-    </a>
+    <h2>{post.title}</h2>
+    <small>By {post.user.name}</small>
+    <p>{post.body}</p>
   </Link>
 )
 
