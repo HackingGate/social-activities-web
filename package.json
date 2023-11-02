@@ -19,7 +19,7 @@
     "generate": "yarn generate:prisma && yarn generate:nexus"
   },
   "dependencies": {
-    "@apollo/client": "3.8.6",
+    "@apollo/client": "3.8.7",
     "@chakra-ui/react": "2.8.1",
     "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
