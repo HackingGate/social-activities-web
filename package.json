@@ -47,7 +47,7 @@
     "eslint": "9.13.0",
     "eslint-config-next": "14.2.16",
     "eslint-config-prettier": "9.1.0",
-    "husky": "8.0.3",
+    "husky": "9.1.7",
     "prettier": "3.3.3",
     "prisma": "4.16.2",
     "ts-node": "10.9.2",
